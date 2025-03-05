@@ -1,0 +1,38 @@
+Package: ImputationReport
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.0.1
+Authors@R: c(
+    person("Lee", "Matthew", email = "matthewlee821@gmail.com", role = c("aut", "cre")),
+    person("Vivian", "Viallon", role = c("aut")),
+    person("Courtois", "Emeline", role = c("aut")),
+    person("Olanipekun", "Michael", role = c("aut")))
+Maintainer: Matthew Lee <matthewlee821@gmail.com>
+Description: A simple testing package to generate an imputation report
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+  ggplot2,
+  cowplot,
+  dplyr,
+  tidyr,
+  magrittr,
+  caret,
+  imputeLCMD,
+  missForest,
+  parallel,
+  doParallel,
+  pcaMethods,
+  missMethods,
+  reshape2,
+  patchwork,
+  wesanderson,
+  kableExtra,
+  impute
+Suggests:
+  BiocManager
+biocViews:
+  imputation, preprocessing
