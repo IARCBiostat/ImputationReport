@@ -13,13 +13,11 @@ It takes complete data (i.e., features with no missing values) from your data an
 6. mean
 7. random forest (RF)
 
-After imputation we compare the actual value with the imputed value using root-mean-square error (RMSE) and R^2^. NOTE: R^2^ is not reflective of prediction accuracy but can indicate the correlation between the actual and imputed values. RMSE is calculated as: 
+After imputation we compare the actual value with the imputed value using root-mean-square error (RMSE) and R<sup>2</sup>. NOTE: R<sup>2</sup> is not reflective of prediction accuracy but can indicate the correlation between the actual and imputed values. RMSE is calculated as: 
 
-<center>
-$\sqrt{\text{mean}\left((\text{actual} - \text{predicted})^2\right)}$
-</center>
+<p style="text-align: center;">$\sqrt{\text{mean}\left((\text{actual} - \text{predicted})^2\right)}$</p>
 
-Where $actual$ is the value from the complete data prior to replacement with `NA` and $predicted$ is the imputed value of said missing data. The figure below gives values for all models at all % missing and the table shows the most accurate model for each % missing tested; the lower the RMSE the better the model fit; the higher the R^2^ the more correlated the actual and imputed values are. 
+Where $actual$ is the value from the complete data prior to replacement with `NA` and $predicted$ is the imputed value of said missing data. The figure below gives values for all models at all % missing and the table shows the most accurate model for each % missing tested; the lower the RMSE the better the model fit; the higher the R<sup>2</sup> the more correlated the actual and imputed values are. 
 
 ## How
 A single function takes a dataframe, the location where you want to save the report, and a label (subtitle) to attach to the report. The report and a cache will be saved in the location provided. A simulated dataframe (`data(data_features)`) and a [report](https://github.com/IARCBiostat/ImputationReport/blob/main/inst/imputation.html) generated from this are provided as an example. A preview of the report can be seen [here](https://html-preview.github.io/?url=https://github.com/IARCBiostat/ImputationReport/blob/main/inst/imputation.html)
