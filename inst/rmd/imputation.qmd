@@ -116,8 +116,8 @@ plot_missing_features <- ggplot2::ggplot(missing_percent, ggplot2::aes(x = Colum
        y = "% missing") +
   ggplot2::scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   cowplot::theme_cowplot() +
-  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5, hjust=1)) 
-
+  ggplot2::theme(axis.text.x = ggplot2::element_blank(),
+                 axis.ticks.x = ggplot2::element_blank()) 
 # Calculate missingness percentage for each row
 missing_percent <- data %>%
   tibble::rownames_to_column("Row") %>%  
@@ -132,7 +132,8 @@ plot_missing_samples <- ggplot2::ggplot(missing_percent, ggplot2::aes(x = Row, y
        y = "% missing") +
   ggplot2::scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   cowplot::theme_cowplot() +
-  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5, hjust=1)) 
+  ggplot2::theme(axis.text.x = ggplot2::element_blank(),
+                 axis.ticks.x = ggplot2::element_blank()) 
 
 cowplot::plot_grid(plot_missing_features, plot_missing_samples, nrow = 2)
 ```
