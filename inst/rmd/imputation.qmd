@@ -12,6 +12,7 @@ params:
   data: "default_data_var"
   output_dir: "default_output_dir"
   subtitle: "default_subtitle"
+  root_dir: "default_root_dir"
 editor_options: 
   chunk_output_type: console
 ---
@@ -38,7 +39,7 @@ knitr::opts_chunk$set(include = TRUE,
 file_path <- params$file_path
 data <- params$data
 
-knitr::opts_knit$set(root.dir = output_dir)
+knitr::opts_knit$set(root.dir = root_dir)
 set.seed(821)
 
 # environment ====
