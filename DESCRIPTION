@@ -15,24 +15,26 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Imports:
-  ggplot2,
-  cowplot,
-  dplyr,
-  tidyr,
-  magrittr,
-  caret,
-  imputeLCMD,
-  missForest,
-  parallel,
-  doParallel,
-  pcaMethods,
-  missMethods,
-  reshape2,
-  patchwork,
-  wesanderson,
-  kableExtra,
-  impute
+    ggplot2,
+    cowplot,
+    dplyr,
+    tidyr,
+    magrittr,
+    imputeLCMD,
+    missForest,
+    parallel,
+    doParallel,
+    pcaMethods,
+    missMethods,
+    patchwork,
+    kableExtra,
+    impute,
+    rmarkdown,
+    utils,
+    stats,
+    tibble,
+    scales
 Suggests:
-  BiocManager
+    BiocManager
 biocViews:
-  imputation, preprocessing
+    imputation, preprocessing

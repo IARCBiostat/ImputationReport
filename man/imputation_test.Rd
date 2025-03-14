@@ -4,14 +4,14 @@
 \alias{imputation_test}
 \title{Perform Imputation Test}
 \usage{
-imputation_test(data, output_dir, root_dir, subtitle)
+imputation_test(data, output_dir, knit_root_dir, subtitle)
 }
 \arguments{
 \item{data}{your data variable e.g., mtcars}
 
 \item{output_dir}{where you want to save the output}
 
-\item{root_dir}{where you want to generate the report from}
+\item{knit_root_dir}{where you want to generate the report from}
 
 \item{subtitle}{what you want to call this imputation test}
 }
@@ -26,9 +26,9 @@ be no extra columns.
 \examples{
 \dontrun{
 imputation_test(data = mtcars,
-                output_dir = "project1/data/",
-                root_dir = "project1/",
-                subtitle = "imputation testing for mtcars")
+                  output_dir = "project1/data/",
+                  knit_root_dir = "project1/",
+                  subtitle = "imputation testing for mtcars")
 }
 
 }

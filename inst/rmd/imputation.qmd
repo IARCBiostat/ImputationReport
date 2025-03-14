@@ -12,7 +12,7 @@ params:
   data: "default_data_var"
   output_dir: "default_output_dir"
   subtitle: "default_subtitle"
-  root_dir: "default_root_dir"
+  knit_root_dir: "default_knit_root_dir"
 editor_options: 
   chunk_output_type: console
 ---
@@ -39,25 +39,8 @@ knitr::opts_chunk$set(include = TRUE,
 file_path <- params$file_path
 data <- params$data
 
-knitr::opts_knit$set(root.dir = root_dir)
+knitr::opts_knit$set(root.dir = knit_root_dir)
 set.seed(821)
-
-# environment ====
-# library(ggplot2)
-# library(cowplot)
-# library(dplyr)
-# library(tidyr)
-# library(caret)
-# library(imputeLCMD)
-# library(impute)
-# library(missForest)
-# library(parallel)
-# library(doParallel)
-# library(pcaMethods)
-# library(missMethods)
-# library(reshape2)
-# library(patchwork)
-# library(kableExtra)
 ```
 
 ## Data
@@ -149,7 +132,7 @@ plot_missing_samples <- ggplot2::ggplot(missing_percent, ggplot2::aes(x = Row, y
        y = "% missing") +
   ggplot2::scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   cowplot::theme_cowplot() +
-  ggplot2::theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5, hjust=1)) 
 
 cowplot::plot_grid(plot_missing_features, plot_missing_samples, nrow = 2)
 ```
@@ -476,17 +459,17 @@ custom_breaks <- c(0.5, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90)
 custom_labels <- custom_breaks
 
 plot_imputation_rmse <- ggplot2::ggplot(imputation_rmse, ggplot2::aes(x = Percent.missing, y = value, col = variable)) +
-  ggplot2::geom_line(aes(col = variable)) + 
+  ggplot2::geom_line(ggplot2::aes(col = variable)) + 
   ggplot2::geom_point(ggplot2::aes(col = variable)) +  
-  ggplot2::guides(color = guide_legend("method")) +
+  ggplot2::guides(color = ggplot2::guide_legend("method")) +
   ggplot2::ylab("RMSE") + ggplot2::xlab("% missing") + 
   cowplot::theme_cowplot() +
   ggplot2::scale_x_continuous(breaks = custom_breaks, labels = custom_labels) 
 
 plot_imputation_r2 <- ggplot2::ggplot(imputation_r2, ggplot2::aes(x = Percent.missing, y = value, col = variable)) +
-  ggplot2::geom_line(aes(col = variable)) + 
-  ggplot2::geom_point(aes(col = variable)) +  
-  ggplot2::guides(color = guide_legend("method")) +
+  ggplot2::geom_line(ggplot2::aes(col = variable)) + 
+  ggplot2::geom_point(ggplot2::aes(col = variable)) +  
+  ggplot2::guides(color = ggplot2::guide_legend("method")) +
   ggplot2::ylab("R2") + ggplot2::xlab("% missing") +
   cowplot::theme_cowplot() +
   ggplot2::scale_x_continuous(breaks = custom_breaks, labels = custom_labels)
@@ -501,7 +484,7 @@ plot_imputation_comparison
 table <- dplyr::left_join(imputation_method_rmse, imputation_method_r2, by = "Percent.missing")
 table <- dplyr::select(table, Percent.missing, variable.x, value.x, variable.y, value.y)
 table <- table %>%
-  mutate(dplyr::across(tidyselect::where(is.numeric), ~ ifelse(abs(.) < 1,  # Check if absolute value is less than 1
+  dplyr::mutate(dplyr::across(tidyselect::where(is.numeric), ~ ifelse(abs(.) < 1,  # Check if absolute value is less than 1
                                            round(., digits = -floor(log10(abs(.))) + 1), # Round to first 2 non-zero digits
                                            round(., digits = 2))))  # Round to 2 decimal places
 
