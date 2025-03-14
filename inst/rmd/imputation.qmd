@@ -103,7 +103,7 @@ mpa_df <- data.frame(
 
 mpa_df %>%
   dplyr::group_by(group = cut(detection_frequency, breaks = seq(0, 100, 10))) %>%
-  dplyr::summarise(n = n()) -> mpa_df_totals
+  dplyr::summarise(n = dplyr::n()) -> mpa_df_totals
 
 y_coordinates <- as.numeric(gsub("\\((\\d+),(\\d+)\\]", "\\1.5", mpa_df_totals$group))+4.5
 ```
