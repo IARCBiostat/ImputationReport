@@ -24,10 +24,10 @@ A single function takes a dataframe, the location where you want to save the rep
 
 ```r
 ImputationReport::imputation_test(
-  data = data_features, 
-  output_dir = "/path/to/save/report/", 
-  subtitle = "my report"
-  )
+  data = ImputationReport::data_features, 
+  output_dir = "inst/test/", 
+  knit_root_dir = here::here(), 
+  subtitle = "test")
 ```
 
 ## References
