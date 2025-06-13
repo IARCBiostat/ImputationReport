@@ -240,10 +240,17 @@ data_list_imputed_5percentile <- lapply(data_list_missing, function(df) {
 })
 
 ## left-censored missing data imputation ====
-data_list_imputed_lcmd <- lapply(data_list_missing, function(x){
-  imputeLCMD::impute.MAR.MNAR(as.matrix(x), 
-                             model.selector = imputeLCMD::model.Selector(x),
-                             method.MNAR = 'QRILC')
+data_list_imputed_lcmd <- lapply(data_list_missing, function(x) {
+  tryCatch({
+    imputeLCMD::impute.MAR.MNAR(as.matrix(x),
+                                model.selector = imputeLCMD::model.Selector(x),
+                                method.MNAR = 'QRILC')
+  }, error = function(e) {
+    cat("impute.MAR.MNAR(...method.MNAR = QRILC) failed. Error: ", e$message, "\n retrying with 'MinProb'.\n")
+    imputeLCMD::impute.MAR.MNAR(as.matrix(x),
+                                model.selector = imputeLCMD::model.Selector(x),
+                                method.MNAR = 'MinProb')
+  })
 })
 
 ## K nearest neighbours ====
